@@ -22,7 +22,7 @@ necessary to open edit and save every template or to repeatedly rebuild. Then
 each unrecognized tag must be resolved by hand or wrapped in `<mt:Ignore>`
 before trying to rebuild again.
 
-UnrecognizedTags is intended to simplify this process. It can be especially
+Unrecognized Tags is intended to simplify this process. It can be especially
 useful when upgrading, or when preparing to use or discontinue use of a
 particular plugin. It is also helpful for large or legacy installations all of
 whose blogs and templates aren't fully understood by the people currently
