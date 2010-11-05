@@ -14,6 +14,7 @@ package UnrecognizedTags::CMS;
 
 use strict;
 use warnings;
+
 use MT::Util;
 
 sub unrecognized_tags {
@@ -37,7 +38,7 @@ sub unrecognized_tags {
         $tmpl->compile;
         if ( $tmpl->{errors} && @{ $tmpl->{errors} } ) {
 
-#print "Errors in " . $tmpl->id . "'" . $tmpl->name . "' (" . $tmpl->blog_id . ")\n";
+            #print "Errors in " . $tmpl->id . "'" . $tmpl->name . "' (" . $tmpl->blog_id . ")\n";
             my @msgs = map {
                 ( $_->{message} =~ /unrecognized/mi )
                   ? $_->{message}
