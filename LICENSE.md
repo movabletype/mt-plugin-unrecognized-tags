@@ -1,7 +1,9 @@
 # UnrecognizedTags
 
 Copyright &copy; 2009-2013, [Six Apart, Ltd.](http://www.sixapart.com/)  All Rights Reserved.
+
 Copyright &copy; 2009-2010, [Endevver, LLC](http://www.endevver.com/).  All Rights Reserved.
+
 Copyright &copy; 2013, [After6 Services LLC](http://www.after6services.com/).  All Rights Reserved.
 
             GNU GENERAL PUBLIC LICENSE
