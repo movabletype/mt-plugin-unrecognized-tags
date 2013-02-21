@@ -1,8 +1,11 @@
 name: Unrecognized Tags
 id: UnrecognizedTags
 key: UnrecognizedTags
-version: 0.6
-description: Identify unrecognized tags in use in all templates system-wide.
+version: 0.7
+description: Identify unrecognized Movable Type Markup Language tags in use throughout all templates, system-wide.
+author_name: Six Apart, Ltd., Endevver, LLC, After6 Services LLC, et. al.
+author_link: http://www.sixapart.com/
+doc_link: https://github.com/movabletype/mt-plugin-unrecognized-tags/
 applications:
     cms:
         methods:
