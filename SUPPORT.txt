@@ -1,2 +1,0 @@
-Unrecognized Tags is not an official Six Apart release. As such, support from
-Six Apart for this plugin is not available.
