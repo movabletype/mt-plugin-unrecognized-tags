@@ -22,10 +22,19 @@ sub unrecognized_tags {
 
     require MT::Template;
     require MT::Blog;
+    require UnrecognizedTags::Util;
 
     my $tags  = {};
     my $tmpls = {};
     my $blogs = {};
+
+    #
+    # In Version 1.0, we add a way to filter out unrecognized tags that are used in Backup Templates.
+    # This subroutine needs to look up the system-wide setting "system_display_backups", and
+    # exclude Backup Templates from analysis if the user does not want to see those results.
+    #
+
+    my $display_backups = UnrecognizedTags::Util::check_config_flag('display_backups');
 
     my $iter;
     if ( $app->blog ) {
@@ -34,23 +43,32 @@ sub unrecognized_tags {
     else {
         $iter = MT::Template->load_iter();
     }
-    while ( my $tmpl = $iter->() ) {
-        $tmpl->compile;
-        if ( $tmpl->{errors} && @{ $tmpl->{errors} } ) {
 
-            #print "Errors in " . $tmpl->id . "'" . $tmpl->name . "' (" . $tmpl->blog_id . ")\n";
-            my @msgs = map {
-                ( $_->{message} =~ /unrecognized/mi )
-                  ? $_->{message}
-                  : ()
-            } @{ $tmpl->{errors} };
-            for my $msg (@msgs) {
-                my ($tag) = ( $msg =~ /^<([^>]+)>/ );
-                $tags->{$tag} ||= {};
-                $tags->{$tag}->{ $tmpl->id }++;
+    #
+    # Iterate through the templates.  Only operate on the Backup Templates if the user wants to see those
+    # results.  The Backup template names that we've seen all contain the phrase "(Backup from".  That
+    # seems like the most reasonable way to avoid processing Backup Templates.
+    #
+
+    while ( my $tmpl = $iter->() ) {
+        if ($display_backups == 1 || $tmpl->name !~ /\(Backup from/ ) {
+            $tmpl->compile;
+            if ( $tmpl->{errors} && @{ $tmpl->{errors} } ) {
+
+                #print "Errors in " . $tmpl->id . "'" . $tmpl->name . "' (" . $tmpl->blog_id . ")\n";
+                my @msgs = map {
+                    ( $_->{message} =~ /unrecognized/mi )
+                    ? $_->{message}
+                    : ()
+                } @{ $tmpl->{errors} };
+                for my $msg (@msgs) {
+                    my ($tag) = ( $msg =~ /^<([^>]+)>/ );
+                    $tags->{$tag} ||= {};
+                    $tags->{$tag}->{ $tmpl->id }++;
+                }
+                $tmpls->{ $tmpl->id } = $tmpl;
+                $blogs->{ $tmpl->blog_id } ||= MT::Blog->load( $tmpl->blog_id );
             }
-            $tmpls->{ $tmpl->id } = $tmpl;
-            $blogs->{ $tmpl->blog_id } ||= MT::Blog->load( $tmpl->blog_id );
         }
     }
     my @tag_loop = ();

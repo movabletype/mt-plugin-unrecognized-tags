@@ -1,11 +1,21 @@
 name: Unrecognized Tags
 id: UnrecognizedTags
 key: UnrecognizedTags
-version: 0.7
+version: 1.0
 description: Identify unrecognized Movable Type Markup Language tags in use throughout all templates, system-wide.
 author_name: Six Apart, Ltd., Endevver, LLC, After6 Services LLC, et. al.
 author_link: http://www.sixapart.com/
 doc_link: https://github.com/movabletype/mt-plugin-unrecognized-tags/
+#
+# In Version 1.0, we add a way to filter out unrecognized tags that are used in Backup Templates.
+# This requires a system-wide setting and a configuration template.
+#
+settings:
+    system_display_backups:
+        Default: 0
+        Scope: system
+system_config_template: settings/system.tmpl
+
 applications:
     cms:
         methods:

@@ -34,7 +34,9 @@ After downloading and uncompressing this package:
 
 # Configuration
 
-No configuration is required to use UnrecognizedTags.
+Beginning with Version 1.0, you now have the option of suppressing the display of unrecognized tags that are contained in Backup Templates.  Configuration is determined in the system-level settings for this plugin.
+
+The default behavior is "Do not display unrecognized tags from backup templates."  If you want to see unrecognized tags for all templates including backup templates, change the settings to "Display unrecognized tags for backup templates".
 
 # Usage
 
@@ -60,6 +62,8 @@ This plugin is licensed under Version 2 of The GNU General Public License, http:
 # Authorship
 
 UnrecognizedTags has been contributed to by many current and former employees of Six Apart, Ltd., After6 Services, and Endevver.
+
+Dave Aiello from After6 Services wrote the functionality that suppresses the display of unrecognized tags in backup templates.
 
 In the future we hope to build a Credits Page in the Unrecognized Tags wiki to list specific individuals who have contributed.
 

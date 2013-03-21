@@ -1,0 +1,12 @@
+<fieldset>
+    <mtapp:setting
+        id="mtn_display_backups"
+        label="<__trans phrase="Identify Unrecognized Tags in Backup Templates">"
+        hint=""
+        show_hint="0">
+        <p>
+            <input type="radio" name="system_display_backups" id="system_display_backups_0" value="0" <mt:if name="system_display_backups_0">checked="checked"</mt:if> /> <__trans phrase="Do not display unrecognized tags for backup templates (Default)"><br />
+            <input type="radio" name="system_display_backups" id="system_display_backups_1" value="1" <mt:if name="system_display_backups_1">checked="checked"</mt:if> /> <__trans phrase="Display unrecognized tags for backup templates">
+        </p>
+    </mtapp:setting>
+</fieldset>
